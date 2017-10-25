@@ -1,9 +1,11 @@
 import React from 'react';
 
 const Shoe = (props) => (
-  <div>
-    Shoe
-  </div>
+  <ul>
+    <li>{props.name}</li>
+    <li>{props.brand}</li>
+    <li>{props.price.toFixed(2)}</li>
+  </ul>
 );
 
 Shoe.propTypes = {
