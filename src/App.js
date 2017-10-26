@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './components/NavBar';
-import ShoeList from './components/ShoeList'
+import ShoeList from './components/ShoeList';
+import CartSummary from './components/CartSummary';
 import Api from './api';
 
 class App extends Component {
@@ -13,7 +14,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shoes: []
+      shoes: [],
+      cart: [],
     };
   }
 
@@ -30,7 +32,8 @@ class App extends Component {
   }
 
   handleShoeSelect (shoe) {
-
+    const newCart = [...this.state.cart, shoe];
+    this.setState({ cart: newCart });
   }
 
   render() {
@@ -46,7 +49,10 @@ class App extends Component {
           </div>
 
           <div className="col s6">
-            <ShoeList shoes={this.state.shoes} />
+            <ShoeList shoes={this.state.shoes}
+              onShoeSelect={(shoe) => this.handleShoeSelect(shoe)}
+            />
+            <CartSummary cart={this.state.cart} />
           </div>
 
           <div className="col s3">
